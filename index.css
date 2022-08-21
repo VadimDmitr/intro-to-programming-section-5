@@ -13,3 +13,8 @@ main {
 #reset {
   margin: 20px;
 }
+
+#below-one, #above-ninetynine {
+  color: tomato;
+  font-weight: bold;
+}
