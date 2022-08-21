@@ -28,9 +28,9 @@ function checkGuess() {
   // Get value from guess input element
   const guess = parseInt(guessInput.value, 10);
   attempts = attempts + 1;
-
+  
   hideAllMessages();
-
+  
   if (guess === targetNumber) {
     numberOfGuessesMessage.style.display = '';
     numberOfGuessesMessage.innerHTML = `You made ${attempts} guesses`;
@@ -47,8 +47,14 @@ function checkGuess() {
     } else {
       tooHighMessage.style.display = '';
     }
+  
+    let remainingAttempts = maxNumberOfAttempts - attempts;
+    numberOfGuessesMessage.style.display = '';
+    numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining`;
+
     if (guess <= 0) {
       belowZeroMessage.style.display = '';
+      tooLowMessage.style.display = 'none';
       submitButton.disabled = true;
       guessInput.disabled = true;
       guessInput.value = '';
@@ -59,6 +65,7 @@ function checkGuess() {
     }
     else if (guess >= 100) {
       aboveOneHundredMessage.style.display = '';
+      tooHighMessage.style.display = 'none';
       submitButton.disabled = true;
       guessInput.disabled = true;
       guessInput.value = '';
@@ -66,11 +73,6 @@ function checkGuess() {
       numberOfGuessesMessage.style.display = 'none';
       numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining`;
     }
-
-    let remainingAttempts = maxNumberOfAttempts - attempts;
-
-    numberOfGuessesMessage.style.display = '';
-    numberOfGuessesMessage.innerHTML = `You guessed ${guess}. <br> ${remainingAttempts} guesses remaining`;
   }
 
   if (attempts === maxNumberOfAttempts) {
